@@ -1,0 +1,43 @@
+<h1 class="text-4xl font-bold text-white mb-6">Storage & Assets</h1>
+<p class="text-lg text-gray-400 mb-8 leading-relaxed">
+    The Phonographic Management System uses a dedicated, high-performance storage cluster for all binary assets (Audio, Artwork, Legal Documents).
+</p>
+
+<div class="bg-dark-800 border border-dark-700 rounded-lg p-6 mb-10 text-center">
+    <p class="text-sm text-gray-500 uppercase tracking-widest font-bold mb-2">Primary Storage Node</p>
+    <code class="text-2xl font-mono text-blue-400">space.phonographicms.com</code>
+</div>
+
+<h2 class="text-2xl font-bold text-white mb-4">Asset URLs</h2>
+<p class="text-gray-400 mb-6">
+    When you upload assets or retrieve catalog metadata, file paths will always be returned relative to the storage domain.
+</p>
+
+<div class="border border-dark-700 rounded-lg overflow-hidden mb-8">
+    <table class="api-table">
+        <thead>
+            <tr><th>Asset Type</th><th>URL Structure</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-medium text-white">Cover Art (Original)</td>
+                <td class="font-mono text-gray-400">https://space.phonographicms.com/images/{release_id}/cover.jpg</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-white">Audio Master (WAV)</td>
+                <td class="font-mono text-gray-400">https://space.phonographicms.com/audio/{track_id}/master.wav</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-white">Signed Contracts</td>
+                <td class="font-mono text-gray-400">https://space.phonographicms.com/legal/{contract_id}.pdf</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-xl font-bold text-white mb-3">Direct Uploads</h3>
+<p class="text-gray-400 mb-4">
+    To upload large files, request a pre-signed URL from the API, then PUT the file binary directly to <code>space.phonographicms.com</code>.
+</p>
+<pre class="bg-black border border-dark-700 rounded-lg p-4 text-sm overflow-x-auto text-gray-300"><code>curl -X PUT "https://space.phonographicms.com/upload/temp/12345?signature=..." \
+  --upload-file song.wav</code></pre>
