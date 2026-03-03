@@ -19,7 +19,7 @@
                             600: '#404248'
                         },
                         brand: { 
-                            500: '#f43f5e', // Rose/Red for PMS branding
+                            500: '#f43f5e', // PMS Rose Red
                             400: '#fb7185',
                             900: '#881337'
                         }
@@ -52,10 +52,11 @@
             width: 100%;
             text-align: left;
             padding: 0.5rem 0.75rem;
-            font-size: 0.875rem; /* 14px */
+            font-size: 0.85rem; 
             color: #9ca3af; /* gray-400 */
             border-left: 2px solid transparent;
-            transition: all 0.2s;
+            transition: all 0.15s;
+            cursor: pointer;
         }
         .nav-item:hover {
             color: white;
@@ -64,22 +65,23 @@
         }
         .nav-item.active {
             color: white;
-            background-color: #151618; /* dark-800 */
-            border-left-color: #f43f5e; /* brand-500 */
+            background-color: #151618; 
+            border-left-color: #f43f5e; 
             font-weight: 500;
         }
 
         /* Section Header Style */
         .nav-section-title {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            color: #d1d5db; /* gray-300 */
+            color: #6b7280; 
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             padding-left: 0.75rem;
         }
+        .nav-section-title:first-child { margin-top: 0.5rem; }
     </style>
 </head>
 <body class="bg-dark-900 text-gray-300 h-screen flex flex-col overflow-hidden">
@@ -96,92 +98,93 @@
         <div class="flex items-center gap-4">
             <div class="hidden md:flex items-center px-3 py-1 rounded border border-green-500/20 bg-green-500/5 text-green-400 text-xs font-mono">
                 <div class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2 animate-pulse"></div>
-                v3.2.0 Stable
+                v3.2.0 API
             </div>
-            <a href="#" class="text-sm font-medium text-gray-400 hover:text-white transition">Support</a>
+            <a href="#" class="text-sm font-medium text-gray-400 hover:text-white transition">Help Center</a>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
 
-        <aside class="w-80 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0 pb-12">
+        <aside class="w-80 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0 pb-16">
             <nav class="px-4 py-6">
                 
-                <h3 class="nav-section-title">Introduction</h3>
+                <h3 class="nav-section-title">System Core</h3>
                 <div class="space-y-0.5">
-                    
-                    <button onclick="loadPage('intro')" class="nav-item active">
-                        System Overview
-                    </button>
-
-                    <button onclick="loadPage('auth')" class="nav-item">
-                        Authentication & Headers
-                    </button>
-                    
-                    <button onclick="loadPage('models')" class="nav-item">
-                        Implementation Models
-                    </button>
-
-                    <button onclick="loadPage('workflow-catalog')" class="nav-item">
-                        Workflow: Catalog Ingestion
-                    </button>
-                    
-                    <button onclick="loadPage('workflow-whitelabel')" class="nav-item">
-                        Workflow: White Label Setup
-                    </button>
-
+                    <button onclick="loadPage('intro')" class="nav-item active">System Overview</button>
+                    <button onclick="loadPage('auth')" class="nav-item">Authentication & Headers</button>
+                    <button onclick="loadPage('models')" class="nav-item">Architecture Models</button>
+                    <button onclick="loadPage('common')" class="nav-item">Common Resources</button>
                 </div>
 
-
-                <h3 class="nav-section-title">Account Management</h3>
+                <h3 class="nav-section-title">Onboarding & Accounts</h3>
                 <div class="space-y-0.5">
-
-                    <button onclick="loadPage('signup')" class="nav-item">
-                        Provisioning New Tenants
-                    </button>
-
-                    <button onclick="loadPage('upgrade')" class="nav-item">
-                        Subscription Upgrades
-                    </button>
-
-                    <button onclick="loadPage('session-auth')" class="nav-item">
-                        Session Management (Auth)
-                    </button>
-
-                    <button onclick="loadPage('invites')" class="nav-item">
-                        User Invitations
-                    </button>
-                    
-                    <button onclick="loadPage('security')" class="nav-item">
-                        Security & Password Policy
-                    </button>
-                    
-                    <button onclick="loadPage('sso-redirect')" class="nav-item">
-                        SSO & Dashboard Redirects
-                    </button>
-                    
-                    <button onclick="loadPage('masquerade')" class="nav-item">
-                        Tenant Context Switching
-                    </button>
-
-                    <button onclick="loadPage('client-info')" class="nav-item">
-                        Client Data Retrieval
-                    </button>
-
-                    <button onclick="loadPage('termination')" class="nav-item text-red-400/70 hover:text-red-400">
-                        Account Termination
-                    </button>
-
+                    <button onclick="loadPage('workflow-catalog')" class="nav-item">Workflow: Catalog Ingestion</button>
+                    <button onclick="loadPage('workflow-whitelabel')" class="nav-item">Workflow: White Label Setup</button>
+                    <button onclick="loadPage('provisioning')" class="nav-item">Tenant Provisioning (Signup)</button>
+                    <button onclick="loadPage('upgrades')" class="nav-item">Subscription Management</button>
+                    <button onclick="loadPage('session')" class="nav-item">Session Initialization (Auth)</button>
+                    <button onclick="loadPage('invites')" class="nav-item">User Invitations</button>
+                    <button onclick="loadPage('security')" class="nav-item">Security Policies</button>
+                    <button onclick="loadPage('sso')" class="nav-item">SSO Handoff</button>
+                    <button onclick="loadPage('masquerade')" class="nav-item">Masquerade Mode (Child Accounts)</button>
+                    <button onclick="loadPage('client-info')" class="nav-item">Client Data Access</button>
+                    <button onclick="loadPage('termination')" class="nav-item text-red-400/80 hover:text-red-400">Offboarding</button>
                 </div>
 
-
-                <h3 class="nav-section-title">Reference</h3>
+                <h3 class="nav-section-title">Asset Management</h3>
                 <div class="space-y-0.5">
-                    
-                    <button onclick="loadPage('common')" class="nav-item">
-                        Common Resources
-                    </button>
+                    <button onclick="loadPage('release-ops')" class="nav-item">Release Operations</button>
+                    <button onclick="loadPage('upload-files')" class="nav-item">Binary Ingestion (Upload)</button>
+                    <button onclick="loadPage('get-releases')" class="nav-item">Fetch Releases</button>
+                    <button onclick="loadPage('get-tracks')" class="nav-item">Fetch Tracks</button>
+                    <button onclick="loadPage('artist-ops')" class="nav-item">Artist Profiles</button>
+                    <button onclick="loadPage('get-artists')" class="nav-item">Fetch Artists</button>
+                    <button onclick="loadPage('external-ids')" class="nav-item">External DSP IDs</button>
+                    <button onclick="loadPage('publisher-ops')" class="nav-item">Publisher Entities</button>
+                    <button onclick="loadPage('get-publishers')" class="nav-item">Fetch Publishers</button>
+                    <button onclick="loadPage('composer-ops')" class="nav-item">Composer Profiles</button>
+                    <button onclick="loadPage('get-composers')" class="nav-item">Fetch Composers</button>
+                    <button onclick="loadPage('archive')" class="nav-item">Archive Assets</button>
+                    <button onclick="loadPage('restore')" class="nav-item">Restore Assets</button>
+                </div>
 
+                <h3 class="nav-section-title">Supply Chain</h3>
+                <div class="space-y-0.5">
+                    <button onclick="loadPage('dist-workflow')" class="nav-item">Delivery Lifecycle</button>
+                    <button onclick="loadPage('validation')" class="nav-item">Validation Logic</button>
+                    <button onclick="loadPage('dist-options')" class="nav-item">Delivery Config</button>
+                    <button onclick="loadPage('queue')" class="nav-item">Queue for Delivery</button>
+                    <button onclick="loadPage('inspection')" class="nav-item">Quality Control (QC)</button>
+                    <button onclick="loadPage('dist-status')" class="nav-item">Delivery Status</button>
+                    <button onclick="loadPage('update-release')" class="nav-item">Metadata Updates</button>
+                    <button onclick="loadPage('takedowns')" class="nav-item">Takedown Requests</button>
+                </div>
+
+                <h3 class="nav-section-title">Performance Data</h3>
+                <div class="space-y-0.5">
+                    <button onclick="loadPage('analytics-overview')" class="nav-item">Analytics Overview</button>
+                    <button onclick="loadPage('trends')" class="nav-item">Daily Trends</button>
+                </div>
+
+                <h3 class="nav-section-title">Rights Management</h3>
+                <div class="space-y-0.5">
+                    <button onclick="loadPage('contract-builder')" class="nav-item">Contract Builder</button>
+                    <button onclick="loadPage('get-contracts')" class="nav-item">Fetch Contracts</button>
+                </div>
+
+                <h3 class="nav-section-title">Financial Reporting</h3>
+                <div class="space-y-0.5">
+                    <button onclick="loadPage('revenue-meta')" class="nav-item">Statement Meta</button>
+                    <button onclick="loadPage('download-reports')" class="nav-item">Download Statements</button>
+                </div>
+
+                <h3 class="nav-section-title">Integrations</h3>
+                <div class="space-y-0.5">
+                    <button onclick="loadPage('razorpay')" class="nav-item">Razorpay Gateway</button>
+                    <button onclick="loadPage('eddy')" class="nav-item">Eddy.app Sync</button>
+                    <button onclick="loadPage('paypal')" class="nav-item">PayPal Payouts</button>
+                    <button onclick="loadPage('dsp-connect')" class="nav-item">DSP Connectors</button>
                 </div>
 
             </nav>
@@ -191,7 +194,7 @@
             <div id="content-container" class="max-w-5xl mx-auto p-12 min-h-full">
                 <div class="text-center mt-20">
                     <div class="inline-block w-12 h-12 border-4 border-dark-700 border-t-brand-500 rounded-full animate-spin mb-4"></div>
-                    <p class="text-gray-500">Loading documentation module...</p>
+                    <p class="text-gray-500">Initializing PMS Documentation...</p>
                 </div>
             </div>
         </main>
@@ -204,21 +207,22 @@
             
             // 1. Loading State
             container.innerHTML = `
-                <div class="animate-pulse space-y-4">
-                    <div class="h-8 bg-dark-800 rounded w-1/3"></div>
-                    <div class="h-4 bg-dark-800 rounded w-3/4"></div>
-                    <div class="h-4 bg-dark-800 rounded w-1/2"></div>
+                <div class="animate-pulse space-y-4 max-w-3xl">
+                    <div class="h-8 bg-dark-800 rounded w-1/3 mb-6"></div>
+                    <div class="h-4 bg-dark-800 rounded w-full"></div>
+                    <div class="h-4 bg-dark-800 rounded w-5/6"></div>
+                    <div class="h-4 bg-dark-800 rounded w-4/6"></div>
                 </div>
             `;
 
             try {
-                // 2. Fetch the external HTML file
-                // Note: Ensure you have the 'pages' folder created with matching .html files
+                // 2. Fetch external HTML file
+                // Ensure you have created a /pages folder with these filenames (e.g., intro.html, auth.html)
                 const response = await fetch(`pages/${pageName}.html`);
                 
                 if (!response.ok) {
-                    if(response.status === 404) throw new Error(`Page "pages/${pageName}.html" not found.`);
-                    throw new Error("Network error");
+                    if(response.status === 404) throw new Error(`Page template "pages/${pageName}.html" not found.`);
+                    throw new Error("Network connection error");
                 }
                 
                 // 3. Inject Content
@@ -228,19 +232,24 @@
                 // 4. Update Navigation Active State
                 document.querySelectorAll('.nav-item').forEach(btn => {
                     btn.classList.remove('active');
-                    // Check if the button's onclick matches the current pageName
                     if(btn.getAttribute('onclick').includes(pageName)) {
                         btn.classList.add('active');
+                        // Optional: Scroll sidebar to active item if needed
                     }
                 });
 
             } catch (error) {
                 // Error State
                 container.innerHTML = `
-                    <div class="p-6 border border-red-500/20 bg-red-500/5 rounded-lg">
-                        <h3 class="text-red-400 font-bold mb-2">Failed to load content</h3>
-                        <p class="text-gray-400 text-sm">${error.message}</p>
-                        <p class="text-gray-500 text-xs mt-4">Tip: If you are opening this file directly in a browser (file://), this won't work due to CORS security. Please run on a local server (localhost).</p>
+                    <div class="p-6 border border-red-500/20 bg-red-500/5 rounded-lg max-w-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <h3 class="text-red-400 font-bold">Content Load Error</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">${error.message}</p>
+                        <div class="bg-black/30 p-3 rounded text-xs text-gray-500 font-mono">
+                            Developer Note: Ensure you are running this via a local server (e.g., VS Code Live Server) to bypass CORS restrictions on file:// protocol.
+                        </div>
                     </div>
                 `;
             }
