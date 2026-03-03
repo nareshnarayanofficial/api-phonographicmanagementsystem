@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phonographic Management System API | Documentation</title>
+    <title>PMS API | Developer Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,7 +12,7 @@
                 extend: {
                     colors: {
                         dark: { 950: '#050505', 900: '#0b0c0e', 800: '#151618', 700: '#2d2e32' },
-                        brand: { 500: '#f43f5e', 400: '#fb7185' } // Changed to Rose/Red for a distinct PMS look
+                        brand: { 500: '#f43f5e', 400: '#fb7185' }
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] }
                 }
@@ -33,43 +33,73 @@
         .api-table tr:last-child td { border-bottom: none; }
         .param-req { color: #f87171; font-size: 0.75rem; margin-left: 4px; }
         .param-type { color: #f43f5e; font-family: 'Fira Code', monospace; font-size: 0.75rem; }
+        
+        /* Submenu styles */
+        .submenu-btn { padding-left: 2rem; border-left: 1px solid #2d2e32; }
+        .submenu-btn:hover { border-left-color: #f43f5e; }
+        .submenu-btn.active { border-left-color: #f43f5e; color: white; background: #151618; }
     </style>
 </head>
 <body class="bg-dark-900 text-gray-300 h-screen flex flex-col overflow-hidden">
 
     <header class="h-16 border-b border-dark-700 bg-dark-950 flex items-center justify-between px-6 shrink-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-brand-500 rounded flex items-center justify-center text-white font-bold tracking-tighter">PMS</div>
-            <span class="text-white font-bold text-lg tracking-tight">Phonographic Management System <span class="text-gray-500 font-light">API</span></span>
+            <div class="w-8 h-8 bg-brand-500 rounded flex items-center justify-center text-white font-bold tracking-tighter">PM</div>
+            <span class="text-white font-bold text-lg tracking-tight">Phonographic <span class="text-gray-500 font-light">System</span></span>
         </div>
         <div class="flex items-center gap-4">
-            <span class="text-xs font-mono bg-dark-800 border border-dark-700 px-2 py-1 rounded text-gray-400">v3.0 Stable</span>
+            <span class="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-1 rounded border border-green-400/20">System Operational</span>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        <aside class="w-72 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0">
+        <aside class="w-80 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0 pb-10">
             <nav class="p-6 space-y-8">
+                
                 <div>
-                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Core</h3>
+                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Core Concepts</h3>
                     <ul class="space-y-1">
-                        <li><button onclick="loadPage('intro')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-white bg-dark-800">Introduction</button></li>
+                        <li><button onclick="loadPage('intro')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Introduction</button></li>
+                        <li><button onclick="loadPage('auth')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Authentication & Headers</button></li>
+                        <li><button onclick="loadPage('models')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Implementation Models</button></li>
                         <li><button onclick="loadPage('storage')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Storage & Assets</button></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">Management</h3>
+                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Onboarding & Accounts</h3>
                     <ul class="space-y-1">
-                        <li><button onclick="loadPage('accounts')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Accounts & Auth</button></li>
-                        <li><button onclick="loadPage('clients')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Clients</button></li>
+                        <li><button onclick="loadPage('workflow-catalog')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Workflow: Catalog Import</button></li>
+                        <li><button onclick="loadPage('workflow-whitelabel')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Workflow: White Label Setup</button></li>
+                        <li><button onclick="loadPage('signup')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Sign Up New Users</button></li>
+                        <li><button onclick="loadPage('upgrade')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Upgrading Accounts</button></li>
+                        <li><button onclick="loadPage('termination')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Account Termination</button></li>
                     </ul>
                 </div>
+
+                <div>
+                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">User Management</h3>
+                    <ul class="space-y-1">
+                        <li><button onclick="loadPage('login')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Authenticating Users</button></li>
+                        <li><button onclick="loadPage('invites')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">User Invites & Passwords</button></li>
+                        <li><button onclick="loadPage('sso')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Web Interface SSO</button></li>
+                        <li><button onclick="loadPage('client-info')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Retrieving Client Info</button></li>
+                        <li><button onclick="loadPage('child-accounts')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Child Account Requests</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Reference</h3>
+                    <ul class="space-y-1">
+                        <li><button onclick="loadPage('common')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Common Resources</button></li>
+                    </ul>
+                </div>
+
             </nav>
         </aside>
 
         <main class="flex-1 overflow-y-auto bg-dark-900 relative scroll-smooth">
-            <div id="content-container" class="max-w-5xl mx-auto p-12">
+            <div id="content-container" class="max-w-5xl mx-auto p-12 pb-32">
                 </div>
         </main>
     </div>
@@ -77,22 +107,29 @@
     <script>
         async function loadPage(pageName) {
             const container = document.getElementById('content-container');
-            container.innerHTML = '<div class="text-gray-500 animate-pulse">Loading...</div>';
+            container.innerHTML = '<div class="text-gray-500 animate-pulse">Initializing documentation module...</div>';
             try {
+                // In a real environment, these would be separate files. 
+                // For this demo, I will fetch from the /pages folder mapping.
                 const response = await fetch(`pages/${pageName}.html`);
                 if (!response.ok) throw new Error("Page not found");
                 container.innerHTML = `<div class="fade-in">${await response.text()}</div>`;
                 
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('bg-dark-800', 'text-white');
-                    btn.classList.add('text-gray-400');
+                // Active State Logic
+                document.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('bg-dark-800', 'text-white', 'active');
+                    if(btn.classList.contains('nav-btn')) btn.classList.add('text-gray-400');
+                    
                     if(btn.getAttribute('onclick').includes(pageName)) {
-                        btn.classList.add('bg-dark-800', 'text-white');
-                        btn.classList.remove('text-gray-400');
+                        if(btn.classList.contains('nav-btn')) {
+                            btn.classList.add('bg-dark-800', 'text-white');
+                        } else {
+                            btn.classList.add('active');
+                        }
                     }
                 });
             } catch (error) {
-                container.innerHTML = `<div class="text-red-500">Error: ${error.message}. Ensure you are running on a local server (localhost).</div>`;
+                container.innerHTML = `<div class="p-4 border border-red-500 rounded bg-red-900/10 text-red-400">Error: ${error.message}. Please ensure you are running this on a localhost server.</div>`;
             }
         }
         document.addEventListener('DOMContentLoaded', () => loadPage('intro'));
