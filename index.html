@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PMS API | Developer Hub</title>
+    <title>PMS API | Developer Documentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,10 +11,23 @@
             theme: {
                 extend: {
                     colors: {
-                        dark: { 950: '#050505', 900: '#0b0c0e', 800: '#151618', 700: '#2d2e32' },
-                        brand: { 500: '#f43f5e', 400: '#fb7185' }
+                        dark: { 
+                            950: '#050505', 
+                            900: '#0b0c0e', 
+                            800: '#151618', 
+                            700: '#2d2e32',
+                            600: '#404248'
+                        },
+                        brand: { 
+                            500: '#f43f5e', // Rose/Red for PMS branding
+                            400: '#fb7185',
+                            900: '#881337'
+                        }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] }
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        mono: ['Fira Code', 'monospace'] 
+                    }
                 }
             }
         }
@@ -22,117 +35,221 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        pre, code { font-family: 'Fira Code', monospace; }
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Table Styles */
-        .api-table { width: 100%; text-align: left; border-collapse: collapse; font-size: 0.875rem; }
-        .api-table th { background-color: #151618; padding: 12px; color: #9ca3af; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; border-bottom: 1px solid #2d2e32; }
-        .api-table td { padding: 12px; border-bottom: 1px solid #2d2e32; color: #d1d5db; vertical-align: top; }
-        .api-table tr:last-child td { border-bottom: none; }
-        .param-req { color: #f87171; font-size: 0.75rem; margin-left: 4px; }
-        .param-type { color: #f43f5e; font-family: 'Fira Code', monospace; font-size: 0.75rem; }
-        
-        /* Submenu styles */
-        .submenu-btn { padding-left: 2rem; border-left: 1px solid #2d2e32; }
-        .submenu-btn:hover { border-left-color: #f43f5e; }
-        .submenu-btn.active { border-left-color: #f43f5e; color: white; background: #151618; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0c0e; }
+        ::-webkit-scrollbar-thumb { background: #2d2e32; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b4c50; }
+
+        /* Animation for page loads */
+        .fade-in { animation: fadeIn 0.2s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Navigation Item Styles */
+        .nav-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem; /* 14px */
+            color: #9ca3af; /* gray-400 */
+            border-left: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-item:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.03);
+            border-left-color: #4b5563;
+        }
+        .nav-item.active {
+            color: white;
+            background-color: #151618; /* dark-800 */
+            border-left-color: #f43f5e; /* brand-500 */
+            font-weight: 500;
+        }
+
+        /* Section Header Style */
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #d1d5db; /* gray-300 */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            padding-left: 0.75rem;
+        }
     </style>
 </head>
 <body class="bg-dark-900 text-gray-300 h-screen flex flex-col overflow-hidden">
 
-    <header class="h-16 border-b border-dark-700 bg-dark-950 flex items-center justify-between px-6 shrink-0 z-20">
+    <header class="h-16 border-b border-dark-700 bg-dark-950 flex items-center justify-between px-6 shrink-0 z-30 shadow-lg shadow-black/20">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-brand-500 rounded flex items-center justify-center text-white font-bold tracking-tighter">PM</div>
-            <span class="text-white font-bold text-lg tracking-tight">Phonographic <span class="text-gray-500 font-light">System</span></span>
+            <div class="w-8 h-8 rounded bg-gradient-to-br from-brand-500 to-rose-700 flex items-center justify-center text-white font-bold tracking-tighter shadow-lg shadow-brand-500/20">PM</div>
+            <div class="flex flex-col">
+                <span class="text-white font-bold text-lg tracking-tight leading-none">Phonographic</span>
+                <span class="text-gray-500 text-xs font-medium tracking-wide">MANAGEMENT SYSTEM</span>
+            </div>
         </div>
+        
         <div class="flex items-center gap-4">
-            <span class="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-1 rounded border border-green-400/20">System Operational</span>
+            <div class="hidden md:flex items-center px-3 py-1 rounded border border-green-500/20 bg-green-500/5 text-green-400 text-xs font-mono">
+                <div class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2 animate-pulse"></div>
+                v3.2.0 Stable
+            </div>
+            <a href="#" class="text-sm font-medium text-gray-400 hover:text-white transition">Support</a>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        <aside class="w-80 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0 pb-10">
-            <nav class="p-6 space-y-8">
+
+        <aside class="w-80 bg-dark-950 border-r border-dark-700 flex flex-col overflow-y-auto shrink-0 pb-12">
+            <nav class="px-4 py-6">
                 
-                <div>
-                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Core Concepts</h3>
-                    <ul class="space-y-1">
-                        <li><button onclick="loadPage('intro')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Introduction</button></li>
-                        <li><button onclick="loadPage('auth')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Authentication & Headers</button></li>
-                        <li><button onclick="loadPage('models')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Implementation Models</button></li>
-                        <li><button onclick="loadPage('storage')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Storage & Assets</button></li>
-                    </ul>
+                <h3 class="nav-section-title">Introduction</h3>
+                <div class="space-y-0.5">
+                    
+                    <button onclick="loadPage('intro')" class="nav-item active">
+                        System Overview
+                    </button>
+
+                    <button onclick="loadPage('auth')" class="nav-item">
+                        Authentication & Headers
+                    </button>
+                    
+                    <button onclick="loadPage('models')" class="nav-item">
+                        Implementation Models
+                    </button>
+
+                    <button onclick="loadPage('workflow-catalog')" class="nav-item">
+                        Workflow: Catalog Ingestion
+                    </button>
+                    
+                    <button onclick="loadPage('workflow-whitelabel')" class="nav-item">
+                        Workflow: White Label Setup
+                    </button>
+
                 </div>
 
-                <div>
-                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Onboarding & Accounts</h3>
-                    <ul class="space-y-1">
-                        <li><button onclick="loadPage('workflow-catalog')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Workflow: Catalog Import</button></li>
-                        <li><button onclick="loadPage('workflow-whitelabel')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Workflow: White Label Setup</button></li>
-                        <li><button onclick="loadPage('signup')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Sign Up New Users</button></li>
-                        <li><button onclick="loadPage('upgrade')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Upgrading Accounts</button></li>
-                        <li><button onclick="loadPage('termination')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Account Termination</button></li>
-                    </ul>
+
+                <h3 class="nav-section-title">Account Management</h3>
+                <div class="space-y-0.5">
+
+                    <button onclick="loadPage('signup')" class="nav-item">
+                        Provisioning New Tenants
+                    </button>
+
+                    <button onclick="loadPage('upgrade')" class="nav-item">
+                        Subscription Upgrades
+                    </button>
+
+                    <button onclick="loadPage('session-auth')" class="nav-item">
+                        Session Management (Auth)
+                    </button>
+
+                    <button onclick="loadPage('invites')" class="nav-item">
+                        User Invitations
+                    </button>
+                    
+                    <button onclick="loadPage('security')" class="nav-item">
+                        Security & Password Policy
+                    </button>
+                    
+                    <button onclick="loadPage('sso-redirect')" class="nav-item">
+                        SSO & Dashboard Redirects
+                    </button>
+                    
+                    <button onclick="loadPage('masquerade')" class="nav-item">
+                        Tenant Context Switching
+                    </button>
+
+                    <button onclick="loadPage('client-info')" class="nav-item">
+                        Client Data Retrieval
+                    </button>
+
+                    <button onclick="loadPage('termination')" class="nav-item text-red-400/70 hover:text-red-400">
+                        Account Termination
+                    </button>
+
                 </div>
 
-                <div>
-                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">User Management</h3>
-                    <ul class="space-y-1">
-                        <li><button onclick="loadPage('login')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Authenticating Users</button></li>
-                        <li><button onclick="loadPage('invites')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">User Invites & Passwords</button></li>
-                        <li><button onclick="loadPage('sso')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Web Interface SSO</button></li>
-                        <li><button onclick="loadPage('client-info')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Retrieving Client Info</button></li>
-                        <li><button onclick="loadPage('child-accounts')" class="submenu-btn w-full text-left block py-2 rounded-r text-sm transition text-gray-400 hover:text-white">Child Account Requests</button></li>
-                    </ul>
-                </div>
 
-                <div>
-                    <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 px-2">Reference</h3>
-                    <ul class="space-y-1">
-                        <li><button onclick="loadPage('common')" class="nav-btn w-full text-left block px-3 py-2 rounded text-sm transition text-gray-400 hover:text-white hover:bg-dark-800">Common Resources</button></li>
-                    </ul>
+                <h3 class="nav-section-title">Reference</h3>
+                <div class="space-y-0.5">
+                    
+                    <button onclick="loadPage('common')" class="nav-item">
+                        Common Resources
+                    </button>
+
                 </div>
 
             </nav>
         </aside>
 
         <main class="flex-1 overflow-y-auto bg-dark-900 relative scroll-smooth">
-            <div id="content-container" class="max-w-5xl mx-auto p-12 pb-32">
+            <div id="content-container" class="max-w-5xl mx-auto p-12 min-h-full">
+                <div class="text-center mt-20">
+                    <div class="inline-block w-12 h-12 border-4 border-dark-700 border-t-brand-500 rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-500">Loading documentation module...</p>
                 </div>
+            </div>
         </main>
+
     </div>
 
     <script>
         async function loadPage(pageName) {
             const container = document.getElementById('content-container');
-            container.innerHTML = '<div class="text-gray-500 animate-pulse">Initializing documentation module...</div>';
+            
+            // 1. Loading State
+            container.innerHTML = `
+                <div class="animate-pulse space-y-4">
+                    <div class="h-8 bg-dark-800 rounded w-1/3"></div>
+                    <div class="h-4 bg-dark-800 rounded w-3/4"></div>
+                    <div class="h-4 bg-dark-800 rounded w-1/2"></div>
+                </div>
+            `;
+
             try {
-                // In a real environment, these would be separate files. 
-                // For this demo, I will fetch from the /pages folder mapping.
+                // 2. Fetch the external HTML file
+                // Note: Ensure you have the 'pages' folder created with matching .html files
                 const response = await fetch(`pages/${pageName}.html`);
-                if (!response.ok) throw new Error("Page not found");
-                container.innerHTML = `<div class="fade-in">${await response.text()}</div>`;
                 
-                // Active State Logic
-                document.querySelectorAll('button').forEach(btn => {
-                    btn.classList.remove('bg-dark-800', 'text-white', 'active');
-                    if(btn.classList.contains('nav-btn')) btn.classList.add('text-gray-400');
-                    
+                if (!response.ok) {
+                    if(response.status === 404) throw new Error(`Page "pages/${pageName}.html" not found.`);
+                    throw new Error("Network error");
+                }
+                
+                // 3. Inject Content
+                const html = await response.text();
+                container.innerHTML = `<div class="fade-in">${html}</div>`;
+                
+                // 4. Update Navigation Active State
+                document.querySelectorAll('.nav-item').forEach(btn => {
+                    btn.classList.remove('active');
+                    // Check if the button's onclick matches the current pageName
                     if(btn.getAttribute('onclick').includes(pageName)) {
-                        if(btn.classList.contains('nav-btn')) {
-                            btn.classList.add('bg-dark-800', 'text-white');
-                        } else {
-                            btn.classList.add('active');
-                        }
+                        btn.classList.add('active');
                     }
                 });
+
             } catch (error) {
-                container.innerHTML = `<div class="p-4 border border-red-500 rounded bg-red-900/10 text-red-400">Error: ${error.message}. Please ensure you are running this on a localhost server.</div>`;
+                // Error State
+                container.innerHTML = `
+                    <div class="p-6 border border-red-500/20 bg-red-500/5 rounded-lg">
+                        <h3 class="text-red-400 font-bold mb-2">Failed to load content</h3>
+                        <p class="text-gray-400 text-sm">${error.message}</p>
+                        <p class="text-gray-500 text-xs mt-4">Tip: If you are opening this file directly in a browser (file://), this won't work due to CORS security. Please run on a local server (localhost).</p>
+                    </div>
+                `;
             }
         }
-        document.addEventListener('DOMContentLoaded', () => loadPage('intro'));
+
+        // Load Introduction by default
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage('intro');
+        });
     </script>
 </body>
 </html>
